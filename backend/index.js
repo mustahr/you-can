@@ -1,20 +1,12 @@
-var mysql = require('mysql');
-const express = require('express');
-const cors = require('cors');
-const { CronJob } = require('cron');
+// Simple HTTP server
 
-const app = express();
-app.use(cors());
-app.use(express.static('public'));
+const http = require("http");
 
-// Start the cron job
-dailyJob.start();
-
-// Handle requests
-app.get('/', (req, res) => {
-    res.send('Hello World!');
+const server = http.createServer((req, res) => {
+  res.writeHead(200, { "Content-Type": "text/plain" });
+  res.end("Hello world!");
 });
 
-// Start the server
 const PORT = process.env.PORT || 3000;
-app.listen(PORT, () => console.log(`Server is running on port ${PORT}`));
+
+server.listen(PORT, () => console.log("Server is running on port 3000"));
